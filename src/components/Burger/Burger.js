@@ -1,16 +1,22 @@
-import React from 'react';
+import React, { Component } from 'react';
 import classes from './Burger.css'
 import BurgerIngredient from './BurgerIngredient/BurgerIngredient';
 
 // Receive props
-const burger = (props) => {
+class burger extends Component {
     
+    componentDidMount() {
+        console.log("Burger Mounted")
+    }
+
+    render() {
+
     // 1 => Object, gives an array of the keys,
     // provided from the ingredients object
     // 2 => 
-    let transformedIngredients = Object.keys(props.ingredients)
+    let transformedIngredients = Object.keys(this.props.ingredients)
     .map(igKey => {
-        return [...Array(props.ingredients[igKey])].map((_, i) => {
+        return [...Array(this.props.ingredients[igKey])].map((_, i) => {
             return <BurgerIngredient key={igKey + i} type={igKey} />
         });
         // prev value, curr value, CHECK OUT map and reduce
@@ -27,6 +33,7 @@ const burger = (props) => {
             <BurgerIngredient type="bread-bottom"/>
         </div>
     );
+}
 }
 
 export default burger;
